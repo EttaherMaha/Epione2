@@ -1,0 +1,78 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      template="/Pages/template/layout.xhtml">
+      
+      <ui:define name="title">Login</ui:define>
+	  <ui:define name="content">
+
+  <!-- Start main-content -->
+  <div class="main-content">
+    <!-- Section: home -->
+    <section id="home" class="divider fullscreen bg-lighter">
+      <div class="display-table">
+        <div class="display-table-cell">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6 col-md-push-3">
+               <center> <h4 class="text-theme-colored mt-0 pt-5"> Login</h4></center>
+                <HR />
+                <center><p>Please Enter your login and password.</p> </center>
+
+
+	     <h:form class="clearfix">
+	     		 
+	     
+	                  <div class="row">
+	                    <div class="form-group col-md-12">
+	                      <h:outputText value="Email" />
+		 	<h:inputText id="form_username_email" name="form_username_email" class="form-control" value="#{authentificationBean.login}" />
+ 	                    </div>
+	                  </div>
+	                  <div class="row">
+	                    <div class="form-group col-md-12">
+	                     	<h:outputText value="Password" />
+		 	<h:inputSecret id="form_password" name="form_password" class="form-control" value="#{authentificationBean.password}" />
+ 	                    </div>
+	                  </div>
+	                  <div class="checkbox pull-left mt-15">
+	                    <label for="form_checkbox">
+	                      <input id="form_checkbox" name="form_checkbox" type="checkbox"></input>
+	                      Remember me </label>
+	                  </div>
+	                  <div class="form-group pull-right mt-10">
+	                    
+	 		 	<p:commandButton  value="Login" icon="ui-icon-check" class="btn btn-dark btn-sm" action="#{authentificationBean.doLogin()}" />
+	                  </div>
+	                  <div class="clear text-center pt-10">
+	                    <a class="text-theme-colored font-weight-600 font-12" href="#">Forgot Your Password?</a>
+	                  </div>
+	                  <div class="clear text-center pt-10">
+	                    <a class="btn btn-dark btn-lg btn-block no-border mt-15 mb-15" href="#" data-bg-color="#3b5998">Login with facebook</a>
+	                    <a class="btn btn-dark btn-lg btn-block no-border" href="#" data-bg-color="#00acee">Login with twitter</a>
+	                  </div>
+	                  
+	              	</h:form>
+	
+	                
+	
+	
+	
+	
+	
+	
+	
+              
+	                
+ 				</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <!-- end main-content -->
+	</ui:define>
+</ui:composition>
