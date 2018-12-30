@@ -53,6 +53,7 @@ public class AuthentificationService implements AuthentificationServiceRemote, A
 		}
 	}
 
+	@Override
 	public List<Appointment> getApoint() {
 		// Appointment app = new Appointment();
 		// app = em.find(Appointment.class, 1);
@@ -69,6 +70,7 @@ public class AuthentificationService implements AuthentificationServiceRemote, A
 
 	}
 
+	@Override
 	public List<User> getALLUsers() {
 		List<User> us = new ArrayList<User>();
 
@@ -81,6 +83,7 @@ public class AuthentificationService implements AuthentificationServiceRemote, A
 		return us;
 	}
 
+	@Override
 	public void GetDoctors() {
 		Client client = ClientBuilder.newClient();
 		WebTarget target = client.target("http://localhost:10762/api/Users");

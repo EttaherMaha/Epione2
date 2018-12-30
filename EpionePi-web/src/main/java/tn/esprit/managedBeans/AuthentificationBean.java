@@ -8,7 +8,9 @@ import javax.faces.context.FacesContext;
 
 import Entites.User;
 import Services.AuthentificationServiceLocal;
-
+import Services.UserConnecteService;
+import Services.UserConnecteServiceLocal;
+ 
 @ManagedBean
 @SessionScoped
 public class AuthentificationBean 
@@ -16,11 +18,15 @@ public class AuthentificationBean
 	private String login;
 	private String password;
 	private User user;
-	private boolean loggedIn;
+	private User userConn;
+	private boolean loggedIn = false;
 	
 	@EJB
 	AuthentificationServiceLocal authentificationServiceLocal ;
 
+	@EJB
+	UserConnecteServiceLocal serviceConnecte;
+	
 	public String getLogin() {
 		return login;
 	}
@@ -72,14 +78,33 @@ public class AuthentificationBean
 		} 
 		else 
 		{
-			navigateTo = "/template/template?faces-redirect=true";
+			userConn = serviceConnecte.getUserConecte(user.getEmail());
+			System.out.println(serviceConnecte.getUserConecte(user.getEmail()).getFirstName());
 			loggedIn = true;
+			if (serviceConnecte.lister(userConn.getId()).getRole().equals("Admin")) 
+			{
+
+				navigateTo = "/TemplateAdmin/TemplateAdmin?faces-redirect=true";
+			}
+			else 
+			{
+				navigateTo = "/template/template?faces-redirect=true";
+
+			}
 		}
 		return navigateTo;
 	}
 	
-	
-	
+
+
+	public User getUserConn() {
+		return userConn;
+	}
+
+	public void setUserConn(User userConn) {
+		this.userConn = userConn;
+	}
+
 	public String doLogout()
 	{
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
