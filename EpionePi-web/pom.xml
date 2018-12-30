@@ -25,11 +25,9 @@
 		<dependency>
 			<groupId>tn.esprit</groupId>
 			<artifactId>EpionePi-ejb</artifactId>
-			<type>ejb</type>
-			<scope>provided</scope>
+			<type>ejb</type>		
 		</dependency>
 	</dependencies>
-
 	<build>
 		<finalName>${project.artifactId}</finalName>
 	</build>

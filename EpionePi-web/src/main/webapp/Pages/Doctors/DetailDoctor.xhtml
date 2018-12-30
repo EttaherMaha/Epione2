@@ -1,0 +1,176 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+	  template="/Pages/template/layout.xhtml">
+
+	<ui:define name="title">Doctor's List</ui:define>
+	<ui:define name="content">
+	
+	
+	
+	
+	
+  <!-- Start main-content -->
+<div class="main-content">
+    <!-- Section: inner-header -->
+    <section class="inner-header divider parallax layer-overlay overlay-dark-8" data-bg-img="http://localhost:18080/EpionePi-web/resources/assets/images/bg/bg1.jpg">
+        <div class="container pt-60 pb-60">
+            <!-- Section Content -->
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-md-12 xs-text-center">
+                        <h3 class="title text-white">Doctor Details</h3>
+                        <ol class="breadcrumb mt-10 white">
+                            <li><a class="text-white" href="#">Home</a></li>
+                            <li><a class="text-white" href="#">Pages</a></li>
+                            <li class="active text-theme-colored">Doctor Details</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Doctor Details -->
+    <section class="">
+        <div class="container">
+                                                            
+        
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-sx-12 col-sm-4 col-md-4">
+                    
+                    
+                        <div class="doctor-thumb">
+                            <img alt="Image" src="http://localhost:18080/EpionePi-web/Images/#{doctorBean.user.photo}" width="300" height="250" />
+                        </div>
+                                           
+                        <ul class="styled-icons icon-gray text-center mt-15 mb-15">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-skype"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        </ul>
+                        <div class="">
+                            <div class="border-5px p-20">
+                                <h5><i class="fa fa-clock-o text-theme-colored"></i> Opening Hours</h5>
+                                <div class="opening-hours text-left">
+                                    <ul class="list-unstyled">
+                                        <li class="clearfix line-height-1">
+                                            <span>Monday-Friday </span>
+                                            <div class="value"> 9.00 - 20.00 </div>
+                                        </li>
+                                        <li class="clearfix line-height-1">
+                                            <span> Saturday </span>
+                                            <div class="value"> 10.00 - 16.00 </div>
+                                        </li>
+                                        <li class="clearfix line-height-1">
+                                            <span> Sunday </span>
+                                            <div class="value"> 9.00 - 18.00 </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-30">
+                            <h4>Client's Feedback</h4>
+                            <div class="owl-carousel-1col" data-dots="true">
+                                <div class="item">
+                                    <div class="testimonial style1">
+                                        <div class="comment">
+                                            <p>Lorem ipsum dolor sit ametconse ctetur adipisicing elitvolup tatem error sit qui dolorem facilis.</p>
+                                        </div>
+                                        <div class="content mt-20">
+                                            <div class="thumb pull-left flip"> <img class="img-circle" alt="" src="http://localhost:18080/EpionePi-web/resources/assets/images/testimonials/s1.jpg"/> </div>
+                                            <div class="text-right flip pull-right flip mr-20 mt-10">
+                                                <h5 class="author text-theme-colored">Jonathan Smith</h5>
+                                                <h6 class="title">cici inc.</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="testimonial style1">
+                                        <div class="comment">
+                                            <p>Lorem ipsum dolor sit ametconse ctetur adipisicing elitvolup tatem error sit qui dolorem facilis.</p>
+                                        </div>
+                                        <div class="content mt-20">
+                                            <div class="thumb pull-left flip"> <img class="img-circle" alt="" src="http://localhost:18080/EpionePi-web/resources/assets/images/testimonials/s1.jpg"/> </div>
+                                            <div class="text-right flip pull-right flip mr-20 mt-10">
+                                                <h5 class="author text-theme-colored">Jonathan Smith</h5>
+                                                <h6 class="title">cici inc.</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="testimonial style1">
+                                        <div class="comment">
+                                            <p>Lorem ipsum dolor sit ametconse ctetur adipisicing elitvolup tatem error sit qui dolorem facilis.</p>
+                                        </div>
+                                        <div class="content mt-20">
+                                            <div class="thumb pull-left flip"> <img class="img-circle" alt="" src="http://localhost:18080/EpionePi-web/resources/assets/images/testimonials/s1.jpg"/> </div>
+                                            <div class="text-right flip pull-right flip mr-20 mt-10">
+                                                <h5 class="author text-theme-colored">Jonathan Smith</h5>
+                                                <h6 class="title">cici inc.</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-8 col-md-8 pl-20 pl-sm-15">
+                    
+                        <div>
+                            <h3 class="mt-0"> #{doctorBean.user.firstName} #{doctorBean.user.lastName} </h3>
+                          
+                            <p>Adress : #{doctorBean.user.address} </p>
+
+                            <p>Phone Number : #{doctorBean.user.phoneNumber} </p>
+
+							<HR />
+                        </div>
+                        <div class="mt-30">
+                            <h4 class="text-uppercase">Education :</h4>
+                            <p>  #{doctorBean.user.education} </p>
+                            <h4 class="mt-30 text-uppercase">Experience :  </h4>
+                            <p>#{doctorBean.user.experience} </p>
+
+                            <br /><br /><br />
+                           <div>
+                            <a class="btn btn-colored btn-lg btn-theme-colored pl-20 pr-20" href="#">Book appointment</a>
+                                <a class="btn btn-warning" href="">Return to list </a>
+
+                             </div>
+                             
+                             
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+ 
+
+
+
+</div>
+<!-- end main-content -->
+	
+	
+	
+	
+
+
+
+
+
+	</ui:define>
+
+</ui:composition>

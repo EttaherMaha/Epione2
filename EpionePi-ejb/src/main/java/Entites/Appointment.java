@@ -39,7 +39,7 @@ public class Appointment implements Serializable {
 
 	private int doctorId;
 
-	private int doctorIdReferant;
+//	private int doctorIdReferant;
 
 	@Column(name="Medication")
 	private String medication;
@@ -141,13 +141,13 @@ public class Appointment implements Serializable {
 		this.doctorId = doctorId;
 	}
 
-	public int getDoctorIdReferant() {
-		return this.doctorIdReferant;
-	}
-
-	public void setDoctorIdReferant(int doctorIdReferant) {
-		this.doctorIdReferant = doctorIdReferant;
-	}
+//	public int getDoctorIdReferant() {
+//		return this.doctorIdReferant;
+//	}
+//
+//	public void setDoctorIdReferant(int doctorIdReferant) {
+//		this.doctorIdReferant = doctorIdReferant;
+//	}
 
 	public String getMedication() {
 		return this.medication;
@@ -234,5 +234,6 @@ public class Appointment implements Serializable {
 
 		return notification;
 	}
+	
 
 }

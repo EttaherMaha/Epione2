@@ -1,0 +1,165 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/Pages/template/layout.xhtml">
+
+	<ui:define name="title">Doctor's List</ui:define>
+	<ui:define name="content">
+
+
+		<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+		<link rel="stylesheet"
+			href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"></link>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+		<!-- Start main-content -->
+		<div class="main-content">
+
+			<div class="section-title text-center">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+						<h2 class="text-uppercase mt-0 line-height-1">Our Doctors</h2>
+						<div class="title-icon">
+							<img class="mb-10"
+								src="http://localhost:18080/EpionePi-web/resources/assets/images/title-icon.png"
+								alt="" />
+						</div>
+						<p>Our Doctors List</p>
+						<br />
+					</div>
+				</div>
+			</div>
+
+			<!-- Section: event calendar -->
+			<section>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-9">
+
+							<table>
+								<tr>
+									<td>
+										<div>Recherche par nom:</div>
+									</td>
+									<td><input type="submit" value="Rechercher" id="recherche" />
+									</td>
+								</tr>
+							</table>
+							<ui:repeat var="item" value="#{doctorBean.users}">
+
+								<div class="Search">
+
+									<div class="upcoming-events bg-white-f3 mb-20">
+										<div class="row">
+											<div class="col-sm-4 pr-0 pr-sm-15">
+												<div class="thumb p-15">
+													<img alt="Image"
+														src="http://localhost:18080/EpionePi-web/Images/#{item.photo}"
+														width="300" height="250" />
+												</div>
+											</div>
+											<div class="col-sm-4 pl-0 pl-sm-15">
+												<div class="event-details p-15 mt-20">
+													<h4 class="media-heading align-text-top font-weight-500">#{item.firstName}
+														#{item.lastName}</h4>
+													<p class="text-theme-colored">#{item.speciality}</p>
+													<p>#{item.education}</p>
+												
+													 
+													<h:form>
+														<center>
+															<h:commandButton
+																action="#{doctorBean.detailDoctor(item.id)}"
+																value="Plus de détails"
+																class="btn btn-outline btn-primary" />
+														</center>
+													</h:form>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<div class="event-count p-15 mt-15">
+
+													<ul>
+														<li><img alt=""
+															src="http://localhost:18080/EpionePi-web/resources/assets/images/flat-color-icons-svg/phone.svg"
+															width="35" height="25" title="phone.svg" />#{item.phoneNumber}</li>
+														<li class="text-theme-colored"><i
+															class="fa fa-map-marker mr-5"></i>#{item.address}</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</ui:repeat>
+						</div>
+
+						<div class="col-md-3">
+							<div class="sidebar sidebar-right mt-sm-30">
+								<div class="widget">
+									<h5 class="widget-title line-bottom">Search box</h5>
+									<div class="col-sm-7">
+										<div class="form-group">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="fa fa-search"></i></span> <input type="text" id="Search"
+													placeholder="Search" class="form-control" />
+
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+		<!-- end main-content -->
+
+
+
+		<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+		<script>
+                   $(document).ready(function () {
+
+                function Contains(text_one,text_two){
+                if(text_one.indexOf(text_two) != -1)
+	                return true;
+                }
+
+
+                $("#Search").keyup(function(){
+
+                var searchText = $("#Search").val().toLowerCase();
+                $(".Search").each(function () {
+
+                if(!Contains($(this).text().toLowerCase(),searchText))
+                     {      $(this).hide();}
+                     else{
+
+                $(this).show();
+                          }
+
+                    });
+
+                    });
+
+                        });
+    </script>
+
+
+
+
+	</ui:define>
+
+
+</ui:composition>

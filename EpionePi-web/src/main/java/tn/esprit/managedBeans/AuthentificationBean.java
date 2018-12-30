@@ -5,6 +5,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+
 import Entites.User;
 import Services.AuthentificationServiceLocal;
 
@@ -58,13 +59,16 @@ public class AuthentificationBean
 		user = new User();
 		user.setEmail(login);
 		user.setPassword(password);
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Welcome " + login + " " + password));
-		System.out.println("Connected");
+				
 		String navigateTo = "";
 		String login = authentificationServiceLocal.Login(user);
 		if (login.equals(""))
 		{
-			System.out.println("Erreur");
+		
+			//FacesMessage msg = new FacesMessage("Vérifier votre login et mot de passe");
+			//msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+			//FacesContext.getCurrentInstance().addMessage(null, msg);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Verifier vos données.!", "Verifier vos données."));		
 		} 
 		else 
 		{
@@ -74,6 +78,13 @@ public class AuthentificationBean
 		return navigateTo;
 	}
 	
+	
+	
+	public String doLogout()
+	{
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		return "/template/login?faces-redirect=true";
+	}
 	
 
 }
