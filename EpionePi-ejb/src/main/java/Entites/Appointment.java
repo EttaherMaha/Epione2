@@ -4,44 +4,44 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
-
 /**
  * The persistent class for the Appointment database table.
  * 
  */
 @Entity
-@NamedQuery(name="Appointment.findAll", query="SELECT a FROM Appointment a")
+@NamedQuery(name = "Appointment.findAll", query = "SELECT a FROM Appointment a")
 public class Appointment implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="AppointementId")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "AppointementId")
 	private int appointementId;
 
-	@Column(name="Analysis")
+	@Column(name = "Analysis")
 	private String analysis;
 
-	@Column(name="AttachementFile")
+	@Column(name = "AttachementFile")
 	private String attachementFile;
 
 	private String comment;
 
 	private boolean confirmation;
 
-	@Column(name="ConfirmProgress")
+	@Column(name = "ConfirmProgress")
 	private boolean confirmProgress;
 
 	private String dateAppointement;
 
-	@Column(name="Diagnosis")
+	@Column(name = "Diagnosis")
 	private String diagnosis;
 
 	private int doctorId;
 
-//	private int doctorIdReferant;
+	private User doctor;
+	// private int doctorIdReferant;
 
-	@Column(name="Medication")
+	@Column(name = "Medication")
 	private String medication;
 
 	private String message;
@@ -54,16 +54,16 @@ public class Appointment implements Serializable {
 
 	private String state;
 
-	@Column(name="TypeOfVisit")
+	@Column(name = "TypeOfVisit")
 	private String typeOfVisit;
 
-	//bi-directional many-to-one association to MedicalRecord
+	// bi-directional many-to-one association to MedicalRecord
 	@ManyToOne
-	@JoinColumn(name="medicalRecordid")
+	@JoinColumn(name = "medicalRecordid")
 	private MedicalRecord medicalRecord;
 
-	//bi-directional many-to-one association to Notification
-	@OneToMany(mappedBy="appointment")
+	// bi-directional many-to-one association to Notification
+	@OneToMany(mappedBy = "appointment")
 	private List<Notification> notifications;
 
 	public Appointment() {
@@ -141,13 +141,13 @@ public class Appointment implements Serializable {
 		this.doctorId = doctorId;
 	}
 
-//	public int getDoctorIdReferant() {
-//		return this.doctorIdReferant;
-//	}
-//
-//	public void setDoctorIdReferant(int doctorIdReferant) {
-//		this.doctorIdReferant = doctorIdReferant;
-//	}
+	// public int getDoctorIdReferant() {
+	// return this.doctorIdReferant;
+	// }
+	//
+	// public void setDoctorIdReferant(int doctorIdReferant) {
+	// this.doctorIdReferant = doctorIdReferant;
+	// }
 
 	public String getMedication() {
 		return this.medication;
@@ -233,6 +233,14 @@ public class Appointment implements Serializable {
 		notification.setAppointment(null);
 
 		return notification;
+	}
+
+	public User getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(User doctor) {
+		this.doctor = doctor;
 	}
 	
 

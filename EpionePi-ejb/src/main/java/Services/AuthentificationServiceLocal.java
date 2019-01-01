@@ -8,13 +8,12 @@ import Entites.Appointment;
 import Entites.User;
 
 @Local
-public interface AuthentificationServiceLocal {
+public interface AuthentificationServiceLocal
+{
 	public String Login(User user);
-
-	public void GetDoctors();
-
 	public List<Appointment> getApoint();
 	public List<User> getALLUsers() ;
+	public String Register(User user) ;
 
 
 }

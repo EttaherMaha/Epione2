@@ -28,7 +28,8 @@ public class doctorBean {
 	@EJB
 	DoctorsAffichageServiceLocal serviceLocal;
 
-	public String detailDoctor(String id) {
+	public String detailDoctor(String id) 
+	{
 		String navigateTo = "";
 		int idUSer = Integer.parseInt(id);
 		user = serviceLocal.getDoctor(idUSer);

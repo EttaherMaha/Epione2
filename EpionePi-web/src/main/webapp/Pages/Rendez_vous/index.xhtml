@@ -1,0 +1,145 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/Pages/template/layout.xhtml">
+
+
+	<ui:define name="content">
+
+		<link
+			href="http://localhost:18080/EpionePi-web/resources/ContentTemplate2/css/styles.css"
+			rel="stylesheet" media="screen"></link>
+
+		<section class="container">
+			<div class="main-container">
+				<div class="row">
+					<div class="filters">
+						<ul class="list-unstyled">
+							<li><a href="#" data-toggle="tooltip"
+								data-placement="bottom" title="highest to lowest"><i
+									class="fa fa-arrow-down" aria-hidden="true"></i></a></li>
+							<li><a href="#" data-toggle="tooltip"
+								data-placement="bottom" title="lowest to highest"><i
+									class="fa fa-arrow-up" aria-hidden="true"></i></a></li>
+							<li><select>
+									<option>Type of Appointment</option>
+									<option>General</option>
+									<option>Specialist</option>
+							</select></li>
+						</ul>
+					</div>
+
+					<div class="listed">
+						<div class="row">
+
+							<ui:repeat var="item" value="#{rendezVousBean.rdvs}">
+
+								<div class="col-lg-12">
+									<div class="item-meeting">
+
+										<div class="avatar-doctor">
+											<div class="avatar-image">
+
+
+												<img alt="Image"
+													src="http://localhost:18080/EpionePi-web/Images/#{item.doctor.photo}"
+													width="300" height="250" />
+												<h4>
+													<i class="fa fa-user-md" aria-hidden="true"></i> <a
+														href="meet-doctors.html" title="See Profile">
+														#{item.doctor.firstName} #{item.doctor.lastName}</a>
+												</h4>
+												<p class="text-theme-colored">
+													<i class="fa fa-map-marker mr-5"></i>#{item.doctor.address}
+												</p>
+												<p class="text-theme-colored">
+													<img alt=""
+														src="http://localhost:18080/EpionePi-web/resources/assets/images/flat-color-icons-svg/phone.svg"
+														width="25" height="10" title="phone.svg" />
+													#{item.doctor.phoneNumber}
+												</p>
+
+
+											</div>
+										</div>
+										<div class="data-meeting">
+											<ul class="list-unstyled info-meet">
+												<li><p class="time">
+														Date : <span>#{item.dateAppointement}</span>
+													</p></li>
+												<li><p>
+														Reason : <span>#{item.reason}</span>
+													</p></li>
+												<li><p>
+														Message : <span>#{item.message}</span>
+													</p></li>
+												<li><p>
+														Type of appointment: : <span>General</span>
+													</p></li>
+
+												<li><p>
+														<span></span>
+													</p></li>
+
+												<h:form>
+													<center>
+														<h:commandButton
+															action="#{rendezVousBean.AnnulerRdv(item.appointementId)}"
+															value="Cancel" class="fa fa-times" />
+													</center>
+												</h:form>
+
+											</ul>
+
+										</div>
+									</div>
+								</div>
+
+							</ui:repeat>
+
+						</div>
+
+
+					</div>
+
+					<aside>
+						<div class="elements-aside">
+							<ul>
+								<li class="color-2"><i class="fa fa-hourglass-half"
+									aria-hidden="true"></i>
+									<h4>Working Time</h4>
+									<p>
+										Monday to Friday <span> 05:00am to 10:00pm</span>
+									</p>
+									<p>
+										Weekends <span> 09:00am to 12:00pm</span>
+									</p></li>
+								<li class="color-3"><i class="fa fa-info"
+									aria-hidden="true"></i>
+									<h4>Doubts?</h4>
+									<p>
+										Office Av. 100 #0987-988, <span>Central Park</span>
+									</p></li>
+							</ul>
+						</div>
+					</aside>
+
+				</div>
+			</div>
+		</section>
+
+
+
+
+
+
+
+
+
+	</ui:define>
+
+
+
+</ui:composition>

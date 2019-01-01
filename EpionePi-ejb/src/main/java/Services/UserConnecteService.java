@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -23,7 +25,8 @@ import Entites.User;
 @LocalBean
 public class UserConnecteService implements UserConnecteServiceRemote, UserConnecteServiceLocal 
 {
-
+	@PersistenceContext(unitName = "EpionePi-ejb")
+	EntityManager em;
     /**
      * Default constructor. 
      */

@@ -1,0 +1,127 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      template="/Pages/template/layout.xhtml">
+
+
+    <ui:define name="title">Login</ui:define>
+	  <ui:define name="content">
+	  
+	  
+    <section>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-7 col-md-offset-1">
+                          
+                
+                    <h:form name="reg-form" id="panel" class="register-form">
+                    
+                        <div class="icon-box mb-0 p-0">
+                            <a href="#" class="icon icon-bordered icon-rounded icon-sm pull-left mb-0 mr-10">
+                                <i class="pe-7s-users"></i>
+                            </a>
+                            <h4 class="text-gray pt-10 mt-0 mb-30">Don't have an Account? Register Now.</h4>
+                        </div>
+                        <HR />
+                        <center> <p class="text-gray">Veuillez remplir le formulaire.</p></center>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+     					<h:outputText for="Email"  value="Email" />
+		 				<h:inputText id="Email" name="form_username_email" class="form-control" required="true"  value="#{authentificationBean.login}" />
+                           <p:message for="Email"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                         <h:outputText for="firstname"  value="FirstName" />
+		 				<h:inputText id="firstname" name="form_name" class="form-control" required="true" value="#{authentificationBean.firstName}" />
+                           <p:message for="firstname"/>
+                            </div> 
+                            <div class="form-group col-md-6">
+                        <h:outputText for="Lastname"  value="LastName" />
+		 				<h:inputText id="Lastname" name="form_name" class="form-control" required="true" value="#{authentificationBean.lastName}" />
+                                                      <p:message for="Lastname"/>
+                           
+                            </div>
+                            </div>
+                       
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <h:outputText for="password"  value="Password" />
+		 				<h:inputSecret id="password" name="form_name" class="form-control" required="true" value="#{authentificationBean.password}" />
+                                                                                <p:message for="password"/>
+                          
+                            </div>
+                            <div class="form-group col-md-6">
+                              <h:outputText for="phoneNumber"  value="Phone Number" />
+		 				<h:inputText id="phoneNumber" name="form_name" class="form-control" required="true" value="#{authentificationBean.phoneNumber}" /> 
+                                  <p:message for="phoneNumber"/>
+                       
+                            </div>
+                        </div>
+                        
+                         <div class="row">
+                            <div class="form-group col-md-6">
+                                  <h:outputText for="address"  value="Address" />
+		 				<h:inputText id="address" name="form_name" class="form-control" required="true" value="#{authentificationBean.address}" />
+                                                            <p:message for="address"/>
+                          
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="editor-field">
+                                   <h:outputText value="Type Account" />
+								<h:selectOneMenu  class="form-control" value="#{authentificationBean.pdf}">
+
+									<f:selectItem itemLabel="Select" itemValue="" />
+
+									<f:selectItems value="#{authentificationBean.roles}">
+
+									</f:selectItems>
+								</h:selectOneMenu>
+                                   
+                                </div>
+                            </div>
+                            </div>
+                        <div class="form-group">
+                     
+                     <p:commandButton class="btn btn-dark btn-lg btn-block mt-15" value="Register Now"  update="panel"
+									action="#{authentificationBean.doRegister()}"
+								    icon="pi pi-check" />
+                        </div>
+                      
+					</h:form>
+					   </div>
+                </div>
+            </div>
+     </section>
+
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  </ui:define>
+</ui:composition>
