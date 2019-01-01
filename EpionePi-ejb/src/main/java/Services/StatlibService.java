@@ -1,6 +1,7 @@
 package Services;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -23,6 +24,7 @@ import Entites.User;
 @LocalBean
 public class StatlibService implements StatlibServiceRemote, StatlibServiceLocal{
 
+	
 	@PersistenceContext
 	EntityManager em;
     /**
@@ -61,7 +63,7 @@ public class StatlibService implements StatlibServiceRemote, StatlibServiceLocal
 		// TODO Auto-generated method stub
 		return null;
 	}
-	public static String getws1() 
+	public List<User> getws1() 
 	{
 		//Create new JAX-RS client 
 		Client client = ClientBuilder.newClient();
@@ -71,22 +73,30 @@ public class StatlibService implements StatlibServiceRemote, StatlibServiceLocal
 		Response reponse = target.request().get();
 		//Read result as a string
 		ArrayList<LinkedHashMap> result1 = reponse.readEntity(ArrayList.class);
+		List<User> ListDLB = new ArrayList<User>()  ;
+		
+		for (LinkedHashMap item : result1) {
+			User u=new User();
+		u.setAddress(item.get("doctolibADD").toString());
+		u.setFirstName(item.get("doctolibName").toString());
+		u.setLastName(item.get("doctolibNOM").toString());
+		u.setDegree(item.get("doctolibSPC").toString());
+		   ListDLB.add(u);
+		}
 		String result=result1.get(1).get("doctolibNOM").toString() ;
 		if (result.equals("")) 
 		{
 			System.out.println("Error");
 			reponse.close();
-			return result;
+			return ListDLB;
 		} 
 		else 
 		{
 			System.out.println(result);
 			reponse.close();
-			return result;
+			return ListDLB;
 		}
 	}
+
 	
-	
-	
-	
-}
+          }
