@@ -1,0 +1,26 @@
+
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui"
+      template="/TemplateAdmin/layoutAdmin.xhtml"
+      >
+      <ui:define name="title">chart</ui:define>
+	  <ui:define name="content">
+      <h:head></h:head>
+      <h:body>
+      <h:form>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <div class="row">
+      <div class="col-sm-6"></div>
+      <div class="col-sm-6"><p:chart type="pie" model="#{chartJsView.pieModel2}" style="width:400px;height:300px"></p:chart></div>
+      </div>
+      </h:form>
+      </h:body>
+      </ui:define>
+	</ui:composition>

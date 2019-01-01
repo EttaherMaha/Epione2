@@ -7,6 +7,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import Entites.User;
 import Services.AuthentificationServiceLocal;
+import Services.StatlibService;
 
 @ManagedBean
 @SessionScoped
@@ -62,6 +63,7 @@ public class AuthentificationBean
 		System.out.println("Connected");
 		String navigateTo = "";
 		String login = authentificationServiceLocal.Login(user);
+		//String login = StatlibService.getws1();
 		if (login.equals(""))
 		{
 			System.out.println("Erreur");
