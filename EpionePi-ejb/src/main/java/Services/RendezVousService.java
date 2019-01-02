@@ -18,6 +18,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import Entites.Appointment;
+import Entites.EtatNotification;
 import Entites.User; 
 
 /**
@@ -98,8 +99,13 @@ public class RendezVousService implements RendezVousServiceRemote, RendezVousSer
 	    return rdvs;
 	}
 
-	
-	
-	
+
+	@Override
+	public int CalculTotalrdv() {
+		Long lol = em
+				.createQuery("select count(r) from Appointment r", Long.class)
+				.getSingleResult();
+		return lol.intValue();
+	}
 
 }

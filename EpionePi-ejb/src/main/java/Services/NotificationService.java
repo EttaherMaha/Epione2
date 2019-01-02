@@ -42,6 +42,17 @@ public class NotificationService implements NotificationServiceRemote, Notificat
 				.setParameter("ID", idUser).setParameter("etat", etat).getSingleResult();
 		return lol.intValue();
 	}
+	
+	@Override
+	public int nbrNotifNonLu(EtatNotification etat)
+	{
+		Long lol = em
+				.createQuery("select count(r) from NotificationRDV r  where etat= :etat", Long.class)
+				.setParameter("etat", EtatNotification.NonLu).getSingleResult();
+		return lol.intValue();
+	}
+	
+	
 
 	@Override
 	public List<NotificationRDV> GetNotificationByUser(int idUser) {

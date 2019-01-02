@@ -24,6 +24,9 @@ public class rdvAdminBean
 	private String state;
 	private List<Appointment> rdvs;
 	private User doctor;
+	private int nbrRdvs;
+
+
 
 	@EJB
 	RendezVousServiceLocal rdvService;
@@ -110,11 +113,15 @@ public class rdvAdminBean
 	public void setDoctor(User doctor) {
 		this.doctor = doctor;
 	}
-	
-	
-	
-	
-	
+
+	public int getNbrRdvs() {
+		int nbrRdvs = rdvService.CalculTotalrdv();
+		return nbrRdvs;
+	}
+
+	public void setNbrRdvs(int nbrRdvs) {
+		this.nbrRdvs = nbrRdvs;
+	}
 	
 	
 	

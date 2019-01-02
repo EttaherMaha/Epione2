@@ -16,4 +16,5 @@ public interface NotificationServiceRemote
     public List<NotificationRDV> GetNotificationByUser(int idUser);
     public List<NotificationRDV> GetNotificationByUserParEtat(int idUser,EtatNotification etat);
 	public List<NotificationRDV> GetNotificationByUserEtat(int idUser, EtatNotification etat);
+	public int nbrNotifNonLu(EtatNotification etat);
 }

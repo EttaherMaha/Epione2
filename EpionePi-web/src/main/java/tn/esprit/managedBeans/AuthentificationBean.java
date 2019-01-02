@@ -28,6 +28,8 @@ public class AuthentificationBean {
 	private String address;
 	private String phoneNumber;
 	private Role pdf;
+	private int nbrPatient;
+	private int nbrDoctor;
 
 	@ManagedProperty("#{rendezVousBean}")
 	private rendezVousBean rdvBean;
@@ -244,4 +246,23 @@ public class AuthentificationBean {
 		this.loggedIn = loggedIn;
 	}
 
+	public int getNbrPatient() {
+		return nbrPatient;
+	}
+
+	public void setNbrPatient(int nbrPatient) {
+		this.nbrPatient = nbrPatient;
+	}
+
+	public int getNbrDoctor() {
+		return nbrDoctor;
+	}
+
+	public void setNbrDoctor(int nbrDoctor) {
+		this.nbrDoctor = nbrDoctor;
+	}
+
+	
+	
+	
 }

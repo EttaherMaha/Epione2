@@ -12,6 +12,7 @@ import Entites.NotificationRDV;
 import Entites.TypeNotification;
 import Entites.User;
 import Services.NotificationServiceLocal;
+import Services.RendezVousService;
 import Services.UserConnecteServiceLocal;
 
 @ManagedBean
@@ -23,24 +24,24 @@ public class notificationBean {
 	private TypeNotification type;
 	private EtatNotification etat;
 	private User user;	
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 	private int idPatient;
 	private int idDoctor;
 	private List<NotificationRDV> notifications;
 	private List<NotificationRDV> notificationsAll;
+	private int nbrNotif;
+	private int nbrRdv;
+
+
 
 	@EJB
 	NotificationServiceLocal notificationService;
 
 	@EJB
 	UserConnecteServiceLocal userService;
+	
+	@EJB
+	RendezVousService rdvService;
+	
 	
 	public int getIdNotification() {
 		return idNotification;
@@ -117,5 +118,34 @@ public class notificationBean {
 	public void setNotificationsAll(List<NotificationRDV> notificationsAll) {
 		this.notificationsAll = notificationsAll;
 	}
+	
+	public int getNbrNotif() {
+		int nbrNotif = notificationService.nbrNotifNonLu(EtatNotification.NonLu);
+		return nbrNotif;
+	}
 
+	public void setNbrNotif(int nbrNotif) {
+		this.nbrNotif = nbrNotif;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public int getNbrRdv() 
+	{
+		int nbrRdv = rdvService.GetRdvs().size();
+		return nbrRdv;
+	}
+
+	public void setNbrRdv(int nbrRdv) {
+		this.nbrRdv = nbrRdv;
+	}
+	
+	
+	
 }
