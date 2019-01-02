@@ -10,4 +10,5 @@ import Entites.Appointment;
 public interface RendezVousServiceLocal {
 	public List<Appointment> getRevParUser(int id);
 	public String AnnulerRdv(int id);
+	public List<Appointment> GetRdvs();
 }

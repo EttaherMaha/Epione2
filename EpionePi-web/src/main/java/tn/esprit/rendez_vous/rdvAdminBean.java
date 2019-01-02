@@ -1,6 +1,5 @@
 package tn.esprit.rendez_vous;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -8,22 +7,19 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import Entites.Appointment;
-import Entites.EtatNotification;
-import Entites.NotificationRDV;
-import Entites.TypeNotification;
 import Entites.User;
 import Services.DoctorsAffichageServiceLocal;
-import Services.NotificationServiceLocal;
 import Services.RendezVousServiceLocal;
 
 @ManagedBean
 @SessionScoped
-public class rendezVousBean {
+public class rdvAdminBean 
+{
 	private int appointementId;
 	private String dateAppointement;
 	private int doctorId;
 	private String message;
-	private User user;
+	private User patient;
 	private String reason;
 	private String state;
 	private List<Appointment> rdvs;
@@ -34,43 +30,6 @@ public class rendezVousBean {
 
 	@EJB
 	DoctorsAffichageServiceLocal serviceLocalDoctor;
-	
-	@EJB
-	NotificationServiceLocal notifService;
-	
-	public String AnnulerRdv(String id) 
-	{		
-		System.out.println(id);
-		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-		String navigateTo = "";	
-		int idA = Integer.parseInt(id);
-		System.out.println(idA);
-		rdvService.AnnulerRdv(idA);
-		NotificationRDV n = new NotificationRDV();
-		n.setIdPatient(user.getId());
-		n.setIdDoctor(2);
-		n.setEtat(EtatNotification.NonLu);
-		n.setType(TypeNotification.AnnulationRdv);
-		n.setDescription("Un rendez vous a été annulé");
-		n.setDateNotification(timestamp);
-		notifService.AddNotification(n);
-		SendMail.sendEMail("maha.ettaher@esprit.tn", "Bienvenue", "Maha", "Ettaher");
-		navigateTo = "index.jsf";
-		return navigateTo;
-	}
-	
-	public List<Appointment> getRdvs() {
-		rdvs = rdvService.getRevParUser(user.getId());
-		for (Appointment appointment : rdvs) {
-			System.out.println(appointment.getAppointementId());
-			appointment.setDoctor(serviceLocalDoctor.getDoctor(appointment.getDoctorId()));
-		}
-		return rdvs;
-	}
-
-	public void setRdvs(List<Appointment> rdvs) {
-		this.rdvs = rdvs;
-	}
 
 	public int getAppointementId() {
 		return appointementId;
@@ -104,12 +63,14 @@ public class rendezVousBean {
 		this.message = message;
 	}
 
-	public User getUser() {
-		return user;
+
+
+	public User getPatient() {
+		return patient;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setPatient(User patient) {
+		this.patient = patient;
 	}
 
 	public String getReason() {
@@ -128,6 +89,20 @@ public class rendezVousBean {
 		this.state = state;
 	}
 
+	public List<Appointment> getRdvs() 
+	{
+		rdvs = rdvService.GetRdvs();
+		for (Appointment appointment : rdvs) {
+			System.out.println(appointment.getAppointementId());
+			appointment.setDoctor(serviceLocalDoctor.getDoctor(appointment.getDoctorId()));
+ 		}
+		return rdvs;
+	}
+
+	public void setRdvs(List<Appointment> rdvs) {
+		this.rdvs = rdvs;
+	}
+
 	public User getDoctor() {
 		return doctor;
 	}
@@ -135,5 +110,12 @@ public class rendezVousBean {
 	public void setDoctor(User doctor) {
 		this.doctor = doctor;
 	}
-
+	
+	
+	
+	
+	
+	
+	
+	
 }

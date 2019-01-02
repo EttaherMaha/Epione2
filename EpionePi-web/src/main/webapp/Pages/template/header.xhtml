@@ -1,66 +1,177 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html">
 
-<div class="body-overlay"></div>
-<div id="side-panel" class="dark" data-bg-img="http://localhost:18080/EpionePi-web/resources/assets/images/bg/bg8.jpg"/>
+	<div class="body-overlay"></div>
+	<div id="side-panel" class="dark"
+		data-bg-img="http://localhost:18080/EpionePi-web/resources/assets/images/bg/bg8.jpg" />
 
 
 
 
-  <!-- preloader -->
-  <div id="preloader">
-    <div id="spinner">
-      <img src="http://localhost:18080/EpionePi-web/resources/assets/images/preloaders/1.gif" alt=""/>
-    </div>
-    <div id="disable-preloader" class="btn btn-default btn-sm">Disable Preloader</div>
-  </div>
-  
-  <!-- Header -->
-  <header id="header" class="header">
-    <div class="header-top bg-theme-colored sm-text-center">
-      <div class="container">
-        <div class="row">
+	<!-- preloader -->
+	<div id="preloader">
+		<div id="spinner">
+			<img
+				src="http://localhost:18080/EpionePi-web/resources/assets/images/preloaders/1.gif"
+				alt="" />
+		</div>
+		<div id="disable-preloader" class="btn btn-default btn-sm">Disable
+			Preloader</div>
+	</div>
 
-  
-        </div>
-      </div>
-    </div>
-    <div class="header-nav">
-      <div class="header-nav-wrapper navbar-scrolltofixed bg-lightest">
-        <div class="container">
-          <nav id="menuzord-right" class="menuzord blue bg-lightest">
-            <a class="menuzord-brand pull-left flip" href="javascript:void(0)">
-              <img src="images/logo-wide.png" alt=""/>
-            </a>
-            <div id="side-panel-trigger" class="side-panel-trigger"><a href="#"><i class="fa fa-bars font-24 text-gray"></i></a></div>
-            <ul class="menuzord-menu">
-       
-				 <li><a href="#{request.contextPath}/template/template.jsf">Home</a>
-				 </li>
-				 
-				  <li><a href="#home">Medical Record</a>
-				 </li>
-				 
-				  <li><a href="#home">Communicate with our doctors</a>
-				 </li>
-				 
-				  <li> <a href="#{request.contextPath}/Pages/Doctors/IndexDoctors.jsf">Doctors</a>
-				 </li>
-				 
-				  <li><a href="#home">Visit Reason</a>
-				 </li>
-				 
-                 <li><a href="#{request.contextPath}/Pages/Rendez_vous/index.jsf">Appointments</a>
-				 </li>
+	<!-- Header -->
+	<header id="header" class="header">
+		<div class="header-top bg-theme-colored sm-text-center">
+			<div class="container">
+				<div class="row"></div>
+			</div>
+		</div>
+		<div class="header-nav">
+			<div class="header-nav-wrapper navbar-scrolltofixed bg-lightest">
+				<div class="container">
+					<nav id="menuzord-right" class="menuzord blue bg-lightest">
+						<a class="menuzord-brand pull-left flip" href="javascript:void(0)">
+							<img src="images/logo-wide.png" alt="" />
+						</a>
+						<div id="side-panel-trigger" class="side-panel-trigger">
+							<a href="#"><i class="fa fa-bars font-24 text-gray"></i></a>
+						</div>
 
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </div>
-  </header>
+
+
+
+
+						<ul class="menuzord-menu">
+
+							<li><a href="#{request.contextPath}/template/template.jsf">Home</a>
+							</li>
+
+							<li><a href="#home">Medical Record</a></li>
+
+							<li><a href="#home">Communicate with our doctors</a></li>
+
+							<li><a
+								href="#{request.contextPath}/Pages/Doctors/IndexDoctors.jsf">Doctors</a>
+							</li>
+
+							<li><a href="#home">Visit Reason</a></li>
+
+							<li><a
+								href="#{request.contextPath}/Pages/Rendez_vous/index.jsf">Appointments</a>
+							</li>
+
+
+						</ul>
+
+						<!-- /.navbar-header -->
+
+
+						<!-- /.navbar-top-links -->
+
+
+
+						<ul>
+							<li class="dropdown"><a class="dropdown-toggle"
+								data-toggle="dropdown" href="#">
+									#{authentificationBean.userConn.firstName}
+									#{authentificationBean.userConn.lastName} <i
+									class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+							</a>
+
+								<ul class="dropdown-menu dropdown-user">
+									<h:form>
+										<li><h:commandLink value="">
+												<i class="fa fa-user fa-fw"></i> Profile</h:commandLink></li>
+										<li><a href="#"><i class="fa fa-gear fa-fw"></i>
+												Settings</a></li>
+										<li class="divider"></li>
+										<li><h:commandLink
+												action="#{authentificationBean.doLogout()}"
+												value="Deconnexion">
+												<i class="fa fa-sign-out fa-fw"></i>
+											</h:commandLink></li>
+									</h:form>
+								</ul> <!-- /.dropdown-user --></li>
+
+
+
+						</ul>
+
+
+						<c:choose>
+							<c:when test="#{authentificationBean.loggedIn==false}">
+
+							</c:when>
+							<c:otherwise>
+								<c:choose>
+									<c:when test="#{authentificationBean.userConn.role=='Doctor'}">
+										<ul class="nav navbar-top-links navbar-right">
+											<li class="dropdown"><a onclick="onClick()"
+												class="dropdown-toggle" data-toggle="dropdown" href="#">
+													<i class="fa fa-bell fa-fw"></i> <i
+													class="fa fa-caret-down"></i>
+											</a>
+
+
+												<ul id="non" class="dropdown-menu dropdown-messages"
+													style="visibility: hidden">
+
+													<li class="divider"></li>
+													<li><a class="text-center"
+														href="http://localhost:18080/EpionePi-web/Pages/Notification/ListeNotification.jsf">
+															<strong>Voir toutes les notifications</strong> <i
+															class="fa fa-angle-right"></i>
+													</a></li>
+
+												</ul>
+												<ul class="dropdown-menu dropdown-messages" id="test">
+													<ui:repeat var="notif"
+														value="#{notificationBean.notifications}">
+														<li><a href="#"></a>
+															<div>
+																<strong>#{notif.type}</strong> <span
+																	class="pull-right text-muted"> <em><h:outputText
+																			value="#{notif.dateNotification}">
+																			<f:convertDateTime pattern="dd-MM-yyyy" />
+																		</h:outputText></em>
+																</span>
+															</div>
+															<div>#{notif.description}</div></li>
+														<li class="divider"></li>
+													</ui:repeat>
+													<li><a class="text-center"
+														href="http://localhost:18080/EpionePi-web/Pages/Notification/ListeNotification.jsf">
+															<strong>Voir toutes les notifications</strong> <i
+															class="fa fa-angle-right"></i>
+													</a></li>
+												</ul> <!-- /.dropdown-messages --></li>
+
+											<!-- /.dropdown -->
+										</ul>
+
+
+
+
+									</c:when>
+									<c:otherwise>
+
+									</c:otherwise>
+								</c:choose>
+							</c:otherwise>
+						</c:choose>
+
+
+
+
+
+					</nav>
+				</div>
+			</div>
+		</div>
+	</header>
 
 
 

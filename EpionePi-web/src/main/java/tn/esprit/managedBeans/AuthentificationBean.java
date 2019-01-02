@@ -12,6 +12,7 @@ import Entites.User;
 import Services.AuthentificationServiceLocal;
 import Services.RendezVousServiceLocal;
 import Services.UserConnecteServiceLocal;
+import tn.esprit.Notifications.notificationBean;
 import tn.esprit.rendez_vous.rendezVousBean;
 
 @ManagedBean
@@ -30,6 +31,9 @@ public class AuthentificationBean {
 
 	@ManagedProperty("#{rendezVousBean}")
 	private rendezVousBean rdvBean;
+	
+	@ManagedProperty("#{notificationBean}")
+	private notificationBean notifBean;
 
 	@EJB
 	AuthentificationServiceLocal authentificationServiceLocal;
@@ -56,8 +60,9 @@ public class AuthentificationBean {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Verifier vos données.!", "Verifier vos données."));
 		} else {
-			userConn = serviceConnecte.getUserConecte(user.getEmail());
+			userConn = serviceConnecte.lister(serviceConnecte.getUserConecte(user.getEmail()).getId());
 			System.out.println(serviceConnecte.getUserConecte(user.getEmail()).getFirstName());
+			System.out.println(userConn.getRole());
 			loggedIn = true;
 			if (serviceConnecte.lister(userConn.getId()).getRole().equals("Admin")) {
 
@@ -65,16 +70,24 @@ public class AuthentificationBean {
 			} else {
 				System.out.println(userConn.getEmail());
 				rdvBean.setUser(userConn);
+				notifBean.setUser(userConn);
 				navigateTo = "/template/template?faces-redirect=true";
-
 			}
 		}
 		return navigateTo;
 	}
 
+	public notificationBean getNotifBean() {
+		return notifBean;
+	}
+
+	public void setNotifBean(notificationBean notifBean) {
+		this.notifBean = notifBean;
+	}
+
 	public String doRegister() {
 		String navigateTo = "";
-		String haya="";
+		String haya = "";
 
 		if (pdf.equals(Role.Patient)) {
 			User patient = new User();
@@ -114,7 +127,7 @@ public class AuthentificationBean {
 			doctor.setOfficeAddress("1");
 
 			System.out.println(doctor.toString());
-			 haya = authentificationServiceLocal.Register(doctor);
+			haya = authentificationServiceLocal.Register(doctor);
 
 			if (haya.equals("Echec")) {
 

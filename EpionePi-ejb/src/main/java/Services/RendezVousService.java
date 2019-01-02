@@ -17,7 +17,8 @@ import javax.ws.rs.core.Response;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import Entites.Appointment; 
+import Entites.Appointment;
+import Entites.User; 
 
 /**
  * Session Bean implementation class RendezVousService
@@ -71,5 +72,34 @@ public class RendezVousService implements RendezVousServiceRemote, RendezVousSer
 		reponse.close();
 		return result;
 	}
+	
+	
+	@Override
+	public List<Appointment> GetRdvs()
+	{
+		Client client = ClientBuilder.newClient();
+		WebTarget target = client.target("http://localhost:10762/AppointmentWS/GetAppointments");
+
+		Response reponse = target.request(MediaType.APPLICATION_JSON).get();
+
+		String result = reponse.readEntity(String.class);
+
+		System.out.println(result);
+
+		Gson j = new Gson();
+		List<Appointment> rdvs = new ArrayList<Appointment>();
+
+		rdvs = j.fromJson(result, new TypeToken<List<Appointment>>() {
+		}.getType());
+
+		System.out.println(rdvs.get(0).getAppointementId());
+
+		reponse.close();
+	    return rdvs;
+	}
+
+	
+	
+	
 
 }
