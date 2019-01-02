@@ -22,12 +22,17 @@ public class Doctolibbean {
 	@EJB
 	private SuggestionService ss;
 	private List<User> Users;
+	private List<Suggestion> Suggs;
 	private User user;
 	private Suggestion d = new Suggestion();
 	@PostConstruct
 	public void init() {
         Users = statlibService.getws1();
+        Suggs = ss.getall();
        
+    }
+	public List<Suggestion> getSuggs() {
+        return Suggs;
     }
 	public List<User> getUsers() {
         return Users;

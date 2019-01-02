@@ -1,5 +1,7 @@
 package Services;
 
+import java.util.List;
+
 import javax.ejb.Local;
 
 import Entites.Suggestion;
@@ -8,5 +10,6 @@ import Entites.Suggestion;
 public interface SuggestionServiceLocal {
 
 	void addSuggestion(Suggestion s);
+	public List<Suggestion> getall ();
 
 }

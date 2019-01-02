@@ -1,0 +1,44 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui"
+      template="/TemplateAdmin/layoutAdmin.xhtml"
+      >
+      <ui:define name="title">Doctolib</ui:define>
+	  <ui:define name="content">
+      <h:head>
+      
+      </h:head>
+      <h:body>
+      <h:form>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <p:dataTable var="sug" value="#{dtBasicView.suggs}">
+    <p:column headerText="nom">
+        <h:outputText value="#{sug.receiverFirstName}" />
+    </p:column>
+ 
+    <p:column headerText="address">
+        <h:outputText value="#{sug.receiverEmail}" />
+    </p:column>
+ 
+    <p:column headerText="spec">
+        <h:outputText value="#{sug.receiverLastName}" />
+    </p:column>
+    <p:column headerText="Details">
+      
+    </p:column>
+</p:dataTable>
+      
+      
+      </h:form>
+      </h:body>
+      </ui:define>
+	</ui:composition>
