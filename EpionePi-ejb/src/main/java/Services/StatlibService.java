@@ -37,14 +37,14 @@ public class StatlibService implements StatlibServiceRemote, StatlibServiceLocal
 	
 	//Stat
 	public Long CountEtatCompteMActif() {
-		TypedQuery<Long> query = em.createQuery("select count (*) from Speciality",
+		TypedQuery<Long> query = em.createQuery("select count (*) from Suggestion where receiverLastName='medecin-generaliste'",
 				Long.class);
 		return (Long) query.getSingleResult();
 		
 	}
 	
 	public Long CountEtatCompteMSanctionne(){
-		TypedQuery<Long> query = em.createQuery("select count (*) from Speciality",
+		TypedQuery<Long> query = em.createQuery("select count (*) from Suggestion where receiverLastName='ophtalmologue'",
 				Long.class);
 		return (Long) query.getSingleResult();
 	}

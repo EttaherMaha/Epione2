@@ -44,16 +44,16 @@ public class ChartJsView {
 
 		int countActif = (int) s.CountEtatCompteMActif().intValue();
 		int CountSanc = (int) s.CountEtatCompteMSanctionne().intValue();
-		int totale = 2;
+		int totale = (int) s.CountEtatCompteM().intValue();
 
 		int pourcentageActif = (int) (countActif * 100) / totale;
 		int pourcentageSanc = (int) (CountSanc * 100) / totale;
 
 		pieModel2 = new PieChartModel();
-		pieModel2.set("Actif " + pourcentageActif+ "%",pourcentageActif);
-		pieModel2.set("Sanctionné " + pourcentageSanc + "%", pourcentageSanc);
+		pieModel2.set("Generaliste " + pourcentageActif+ "%",pourcentageActif);
+		pieModel2.set("Ophtalmologue " + pourcentageSanc + "%", pourcentageSanc);
 
-		pieModel2.setTitle("Etat Des Comptes(Moral)");
+		pieModel2.setTitle("Les Docteur suggeré par specialite");
 		pieModel2.setLegendPosition("w");
 
 	}
