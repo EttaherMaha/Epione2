@@ -20,7 +20,12 @@
       <br/>
       <br/>
       <br/>
-      <p:dataTable var="sug" value="#{dtBasicView.suggs}">
+      <p:dataTable id="d" var="sug" value="#{dtBasicView.suggs}">
+      <h:commandLink>
+								<h:graphicImage library="assets" name="pdf.png" />
+								<p:dataExporter type="pdf" target="d" fileName="demands"
+									encoding="UTF-8" />
+							</h:commandLink>
     <p:column headerText="nom">
         <h:outputText value="#{sug.receiverFirstName}" />
     </p:column>
