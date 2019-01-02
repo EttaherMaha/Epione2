@@ -51,13 +51,13 @@ public class StatlibService implements StatlibServiceRemote, StatlibServiceLocal
 	
 	
 	public Long CountEtatCompteM() {
-		TypedQuery<Long> query = em.createQuery("select count (*) from Speciality",Long.class);
+		TypedQuery<Long> query = em.createQuery("select count (*) from Suggestion",Long.class);
 		return (Long) query.getSingleResult();
 		
 	}
 	
 
-
+   //end stat
 	@Override
 	public List<User> getUserdocs() {
 		// TODO Auto-generated method stub
@@ -96,6 +96,16 @@ public class StatlibService implements StatlibServiceRemote, StatlibServiceLocal
 			reponse.close();
 			return ListDLB;
 		}
+	}
+	public void getws2() 
+	{
+		//Create new JAX-RS client 
+		Client client = ClientBuilder.newClient();
+		//URL of the service
+		WebTarget target = client.target("http://localhost:10762/api/sms");
+		//Get the response from the URL
+		Response reponse = target.request().get();
+		//Read result as a string
 	}
 
 	
